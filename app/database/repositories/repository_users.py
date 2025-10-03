@@ -39,8 +39,7 @@ def read_user(user_id):
             if row:
                 data = {"username": row[0], "image": row[1]}
                 return {"success": True, "data": data}
-            else:
-                return {"success": False, "data": None}
+            return {"success": False, "error": "User not found"}
     except psycopg2.Error as err:
         return {"success": False, "error": f"Something went wrong: {err}"}
     finally:
@@ -57,8 +56,7 @@ def read_user_id_by_email(email):
             row = cur.fetchone()
             if row:
                 return {"success": True, "data": row[0]}
-            else:
-                return {"success": False, "data": None}
+            return {"success": False, "error": "Email not found"}
     except psycopg2.Error as err:
         return {"success": False, "error": f"Something went wrong: {err}"}
     finally:
@@ -75,8 +73,7 @@ def read_user_id_by_username(username):
             row = cur.fetchone()
             if row:
                 return {"success": True, "data": row[0]}
-            else:
-                return {"success": False, "data": None}
+            return {"success": False, "error": "Username not found"}
     except psycopg2.Error as err:
         return {"success": False, "error": f"Something went wrong: {err}"}
     finally:
@@ -93,8 +90,7 @@ def read_email_by_user_id(user_id):
             row = cur.fetchone()
             if row:
                 return {"success": True, "data": row[0]}
-            else:
-                return {"success": False, "data": None}
+            return {"success": False, "error": "User not found"}
     except psycopg2.Error as err:
         return {"success": False, "error": f"Something went wrong: {err}"}
     finally:
@@ -111,8 +107,7 @@ def read_email_by_username(username):
             row = cur.fetchone()
             if row:
                 return {"success": True, "data": row[0]}
-            else:
-                return {"success": False, "data": None}
+            return {"success": False, "error": "Username not found"}
     except psycopg2.Error as err:
         return {"success": False, "error": f"Something went wrong: {err}"}
     finally:
@@ -129,8 +124,7 @@ def read_username_by_user_id(user_id):
             row = cur.fetchone()
             if row:
                 return {"success": True, "data": row[0]}
-            else:
-                return {"success": False, "data": None}
+            return {"success": False, "error": "User not found"}
     except psycopg2.Error as err:
         return {"success": False, "error": f"Something went wrong: {err}"}
     finally:
@@ -147,8 +141,7 @@ def read_username_by_email(email):
             row = cur.fetchone()
             if row:
                 return {"success": True, "data": row[0]}
-            else:
-                return {"success": False, "data": None}
+            return {"success": False, "error": "Email not found"}
     except psycopg2.Error as err:
         return {"success": False, "error": f"Something went wrong: {err}"}
     finally:
