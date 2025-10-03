@@ -1,0 +1,25 @@
+# Virtual environment
+.venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# PyCharm project files
+.idea/
+*.iml
+
+# macOS system files
+.DS_Store
+._*
+
+# Test / coverage artifacts
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+.cache
