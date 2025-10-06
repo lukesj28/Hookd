@@ -5,13 +5,13 @@ from datetime import datetime
 from app.database.db import get_conn, put_conn
 
 
-def create_post(poster_id, image, description, pattern):
+def create_post(poster, image, description, pattern):
     conn = get_conn()
 
     try:
         with conn.cursor() as cur:
-            sql = "INSERT INTO hookd.posts (poster_id, image, description, pattern) VALUES (%s, %s, %s, %s)"
-            cur.execute(sql, (poster_id, image, description, Json(pattern)))
+            sql = "INSERT INTO hookd.posts (poster, image, description, pattern) VALUES (%s, %s, %s, %s)"
+            cur.execute(sql, (poster, image, description, Json(pattern)))
             conn.commit()
             return {"success": True}
     except psycopg2.Error as err:
@@ -21,13 +21,13 @@ def create_post(poster_id, image, description, pattern):
         put_conn(conn)
 
 
-def read_posts(poster_id):
+def read_posts(poster):
     conn = get_conn()
 
     try:
         with conn.cursor() as cur:
-            sql = "SELECT post_id, image, datetime, edited FROM hookd.posts WHERE poster_id = %s"
-            cur.execute(sql, (poster_id,))
+            sql = "SELECT post_id, image, datetime, edited FROM hookd.posts WHERE poster = %s"
+            cur.execute(sql, (poster,))
             rows = cur.fetchall()
             if rows:
                 return {"success": True, "data": [{
@@ -47,11 +47,11 @@ def read_post(post_id):
 
     try:
         with conn.cursor() as cur:
-            sql = "SELECT poster_id, image, datetime, description, pattern, edited FROM hookd.posts WHERE post_id = %s"
+            sql = "SELECT poster, image, datetime, description, pattern, edited FROM hookd.posts WHERE post_id = %s"
             cur.execute(sql, (post_id,))
             row = cur.fetchone()
             if row:
-                data = {"poster_id": row[0],
+                data = {"poster": row[0],
                         "image": row[1],
                         "datetime": f"{row[2].strftime("%b %d, %Y - %H:%M")}(edited)" if row[5] else f"{row[2].strftime("%b %d, %Y - %H:%M")}",
                         "description": row[3],

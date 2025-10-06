@@ -3,7 +3,7 @@ from typing import Optional, Any
 
 
 class PostCreateRequest(BaseModel):
-    poster_id: str
+    poster: str
     image: str
     description: Optional[str] = None
     pattern: dict[str, Any]

@@ -13,12 +13,12 @@ async def create_post_endpoint(
         payload: PostCreateRequest,
         token_payload: dict = Security(auth.verify)
 ):
-    result = create_post(payload.poster_id, payload.image, payload.description, payload.pattern)
+    result = create_post(payload.poster, payload.image, payload.description, payload.pattern)
     if result["success"]:
         return {
             "success": True,
             "post": {
-                "poster": payload.poster_id,
+                "poster": payload.poster,
                 "image": payload.image,
                 "description": payload.description,
                 "pattern": payload.pattern
@@ -33,10 +33,10 @@ async def create_post_endpoint(
 
 @router.get("/posts")
 async def read_posts_endpoint(
-        poster_id: str,
+        poster: str,
         token_payload: dict = Security(auth.verify)
 ):
-    result = read_posts(poster_id)
+    result = read_posts(poster)
     if result["success"]:
         return{
             "success": True,

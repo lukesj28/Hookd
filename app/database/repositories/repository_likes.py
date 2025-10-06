@@ -24,13 +24,13 @@ def create_like(liker, post):
         put_conn(conn)
 
 
-def read_like_count(post_id):
+def read_like_count(post):
     conn = get_conn()
 
     try:
         with conn.cursor() as cur:
-            sql = "SELECT COUNT(*) FROM hookd.likes WHERE post_id = %s"
-            cur.execute(sql, (post_id,))
+            sql = "SELECT COUNT(*) FROM hookd.likes WHERE post = %s"
+            cur.execute(sql, (post,))
             return {"success": True, "data": cur.fetchone()[0]}
     except psycopg2.Error as err:
         return {"success": False, "error": f"Something went wrong: {err}"}
@@ -38,13 +38,13 @@ def read_like_count(post_id):
         put_conn(conn)
 
 
-def delete_like(liker, post_id):
+def delete_like(liker, post):
     conn = get_conn()
 
     try:
         with conn.cursor() as cur:
-            sql = "DELETE FROM hookd.likes WHERE liker = %s AND post_id = %s"
-            cur.execute(sql, (liker, post_id))
+            sql = "DELETE FROM hookd.likes WHERE liker = %s AND post = %s"
+            cur.execute(sql, (liker, post))
             conn.commit()
             if cur.rowcount == 0:
                 return {"success": False, "error": "Like not found"}
