@@ -1,0 +1,56 @@
+# --- Python build and environment ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+*.dist-info/
+.eggs/
+.venv/
+venv/
+env/
+ENV/
+
+# --- IDE and project files ---
+.idea/
+.vscode/
+*.iml
+
+# --- OS / cache files ---
+.DS_Store
+Thumbs.db
+
+# --- Logs and temp ---
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# --- Test and coverage ---
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+.cache/
+
+# --- Build and dist ---
+build/
+dist/
+pip-wheel-metadata/
+
+# --- Git ---
+.git/
+.gitignore
+
+# --- Environment and configs ---
+.env
+.env.*
+*.local
+
+# --- Other ---
+docker-compose.yml

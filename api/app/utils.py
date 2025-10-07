@@ -5,7 +5,7 @@ import jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import SecurityScopes, HTTPAuthorizationCredentials, HTTPBearer
 
-from app.api.config import get_settings
+from app.config import get_settings
 
 
 class UnauthorizedException(HTTPException):

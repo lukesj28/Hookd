@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.routers import users, follows, posts, likes
+from app.routers import users, follows, posts, likes
 
 app = FastAPI()
 

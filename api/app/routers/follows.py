@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Security, HTTPException, status
 
-from app.api.utils import VerifyToken
-from app.database.repositories.repository_follows import *
-from app.api.schemas.schemas_follows import *
+from app.utils import VerifyToken
+from database.repositories.repository_follows import *
+from app.schemas.schemas_follows import *
 
 router = APIRouter()
 auth = VerifyToken()

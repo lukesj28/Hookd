@@ -1,6 +1,6 @@
 import psycopg2
 
-from app.database.db import get_conn, put_conn
+from database.db import get_conn, put_conn
 
 
 def create_user(email, username, image):

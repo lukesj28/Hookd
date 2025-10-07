@@ -2,7 +2,7 @@ import psycopg2
 from psycopg2.extras import Json
 from datetime import datetime
 
-from app.database.db import get_conn, put_conn
+from database.db import get_conn, put_conn
 
 
 def create_post(poster, image, description, pattern):
@@ -33,7 +33,7 @@ def read_posts(poster):
                 return {"success": True, "data": [{
                     "post_id": r[0],
                     "image": r[1],
-                    "datetime": f"{r[2].strftime("%b %d, %Y")}(edited)" if r[3] else f"{r[2].strftime("%b %d, %Y")}"} for r in rows]
+                    "datetime": f"{r[2].strftime('%b %d, %Y')}(edited)" if r[3] else f"{r[2].strftime('%b %d, %Y')}"} for r in rows]
                 }
             return {"success": True, "data": None}
     except psycopg2.Error as err:
@@ -53,7 +53,7 @@ def read_post(post_id):
             if row:
                 data = {"poster": row[0],
                         "image": row[1],
-                        "datetime": f"{row[2].strftime("%b %d, %Y - %H:%M")}(edited)" if row[5] else f"{row[2].strftime("%b %d, %Y - %H:%M")}",
+                        "datetime": f"{row[2].strftime('%b %d, %Y - %H:%M')}(edited)" if row[5] else f"{row[2].strftime('%b %d, %Y - %H:%M')}",
                         "description": row[3],
                         "pattern": row[4]}
                 return {"success": True, "data": data}
